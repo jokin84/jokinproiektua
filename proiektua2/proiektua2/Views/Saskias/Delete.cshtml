@@ -1,0 +1,26 @@
+﻿@model proiektua2.Models.Saskia
+
+@{
+    ViewData["Title"] = "Delete";
+}
+@{
+
+    if (AdminDbContext.user.tipo == "admin")
+    {
+        <h1>Delete</h1>
+
+        <h3>Are you sure you want to delete this?</h3>
+        <div>
+            <h4>Saskia</h4>
+            <hr />
+            <dl class="row">
+            </dl>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="SaskiaId" />
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                <a asp-action="Index">Back to List</a>
+            </form>
+        </div>
+        }
+    }

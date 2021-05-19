@@ -1,0 +1,119 @@
+﻿@*<style>
+        body {
+            background: #f7f7f7;
+            font-family: Verdana, Arial,Helvetica,sans-serif;
+            font-size: 100%;
+            padding: 100px 0 0 300px
+        }
+
+        form {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 22px 38px;
+            width: 265px
+        }
+
+        label {
+            color: #d25959;
+            display: block;
+            font-size: .8em;
+            font-weight: 600
+        }
+
+        input {
+            border: 1px solid #ccc;
+            box-shadow: inset #ccc 0 0 5px;
+            cursor: pointer;
+            font-style: italic;
+            margin: 8px 0 20px;
+            padding: 7px;
+            width: 250px
+        }
+
+        .enviar {
+            background: #d25959;
+            box-shadow: none;
+            color: white;
+            margin-bottom: 0;
+            width: 100px
+        }
+
+            .enviar:hover {
+                text-decoration: underline
+            }
+
+        span {
+            display: block;
+            font-size: .8em;
+            margin: 0px 0 10px;
+            padding: 5px 0 5px 11px;
+            width: 200px
+        }
+
+        .confirmacion {
+            background: #C6FFD5;
+            border: 1px solid green;
+        }
+
+        .negacion {
+            background: #ffcccc;
+            border: 1px solid red
+        }
+        *, ::after,::before{
+            box-sizing:initial;
+        }
+    </style>
+    <h1>Index</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <form action="" method="post">
+        <label>Escribe la contraseña</label>
+        <input type="password" name="pass1" autofocus="autofocus" min="6" max="10" placeholder="Escriba la contraseña" />
+        <label>Vuelve a escribir la contraseña</label>
+        <input type="password" name="pass2" min="6" max="10" placeholder="Vuelva a escribir la contraseña" />
+        <input type="submit" name="enviar" value="Enviar" />
+    </form>
+    <script>
+        $(document).ready(function () {
+            //variables
+            var pass1 = $('[name=pass1]');
+            var pass2 = $('[name=pass2]');
+            var confirmacion = "Las contraseñas si coinciden";
+            var longitud = "La contraseña debe estar formada entre 6-10 carácteres (ambos inclusive)";
+            var negacion = "No coinciden las contraseñas";
+            var vacio = "La contraseña no puede estar vacía";
+            //oculto por defecto el elemento span
+            var span = $('<span></span>').insertAfter(pass2);
+            span.hide();
+            //función que comprueba las dos contraseñas
+            function coincidePassword() {
+                var valor1 = pass1.val();
+                var valor2 = pass2.val();
+                //muestro el span
+                span.show().removeClass();
+                //condiciones dentro de la función
+                if (valor1 != valor2) {
+                    span.text(negacion).addClass('negacion');
+                }
+                if (valor1.length == 0 || valor1 == "") {
+                    span.text(vacio).addClass('negacion');
+                }
+                if (valor1.length < 6 || valor1.length > 10) {
+                    span.text(longitud).addClass('negacion');
+                }
+                if (valor1.length != 0 && valor1 == valor2) {
+                    span.text(confirmacion).removeClass("negacion").addClass('confirmacion');
+                }
+            }
+            //ejecuto la función al soltar la tecla
+            pass2.keyup(function () {
+                coincidePassword();
+            });
+        });
+
+
+
+    </script>
+*@

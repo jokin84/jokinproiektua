@@ -1,0 +1,20 @@
+﻿@model IEnumerable<proiektua2.Models.Producto>
+<a>
+    Markak
+</a>
+<ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+
+        @{var izena1 = "";
+            foreach (var item in Model)
+            {
+                if (item.Marca.Nombre != izena1)
+                {
+                    <button class="dropdown-item"><a class="nav-link text-dark" asp-area="" asp-controller="productos" asp-action="categoriaProductuak" asp-route-id="@item.Marcaid">@Html.DisplayFor(modelItem => item.Marca.Nombre)</a></button>
+
+                    izena1 = item.Marca.Nombre;
+                }
+            }
+        }
+    </li>
+</ul>

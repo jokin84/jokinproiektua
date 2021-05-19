@@ -1,0 +1,91 @@
+﻿@model IEnumerable<proiektua2.Models.Producto>
+
+@{
+    ViewData["Title"] = "MarcaProductuak";
+}
+
+<h1>categoriaProductuak</h1>
+
+<div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel">
+    <div class="carousel-inner">
+        @{var itemLerroko = 0;
+            var fila1 = false;}
+
+        @{
+            foreach (var item in Model)
+            {
+                if (item.Marcaid == ViewBag.id)
+                {
+                    if (item.Eskaintza == true)
+                    {
+                        if (itemLerroko == 0)
+                        {
+                            if (fila1 == false)
+                            {
+                                @:<div class="carousel-item active">
+                                    @:    <div class="row">
+                                    }
+                                    else
+                                    {
+                                        @:<div class="item">
+                                            @:    <div class="row  ">
+                                            }
+                                        }
+
+
+                                        <div class="col-sm">
+                                            <div class="col-item border ">
+                                                <div class="photo text-center">
+                                                    <img class="img-responsive irudia" src="\images\productos\@item.imagen" width="150" height="130" />
+                                                </div>
+                                                <div class="info">
+                                                    <div class="row">
+                                                        <div class="price col-md-6">
+                                                            <h5>
+                                                                @item.descripcion
+                                                            </h5>
+
+                                                            <span class="tachado">@item.precio</span>
+                                                            @item.Deskontua %
+                                                            @{ float eskaintza = item.precio - (item.precio * item.Deskontua) / 100;}
+                                                            <h5 class="price-text-color">
+                                                                @eskaintza
+                                                            </h5>
+                                                        </div>
+                                                        <div class="  d-md-block col-md-6">
+                                                            <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
+                                                            </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
+                                                            </i><i class="fa fa-star"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class=" clear-left">
+                                                        <p class="btn-add">
+                                                            <i class="fa fa-shopping-cart"></i><a asp-area="" asp-controller="Saskia" asp-action="SaskiaGehitu" asp-route-id="@item.id">Karritora gehitu</a>
+                                                        </p>
+                                                        <p class="btn-details">
+                                                            <i class="fa fa-list"></i><a asp-area="" asp-controller="Productos" asp-action="detatellak2" asp-route-id="@item.id">Detaile gehiago</a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="clearfix">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        itemLerroko++;
+                                        fila1 = true;
+                                        if (itemLerroko >= 3)
+                                        {
+                                            @*  @:</div>*@
+                                        @:</div>
+                                        itemLerroko = 0;
+                                    }
+                                }
+                            }
+                        }
+        }
+    </div>
+</div>
+</div>
+</div>
+</div>

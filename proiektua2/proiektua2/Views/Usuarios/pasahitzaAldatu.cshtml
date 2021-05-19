@@ -1,0 +1,148 @@
+﻿@model proiektua2.Models.pasahitzaAldatu
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            //variables
+            var pass1 = $('[name=Pasword1]');
+            var pass2 = $('[name=Pasword2]');
+            var confirmacion = "Las contraseñas si coinciden";
+            var longitud = "La contraseña debe estar formada entre 6-10 carácteres (ambos inclusive)";
+            var negacion = "No coinciden las contraseñas";
+            var vacio = "La contraseña no puede estar vacía";
+            //oculto por defecto el elemento span
+            var span = $('<span></span>').insertAfter(pass2);
+            span.hide();
+            //función que comprueba las dos contraseñas
+            function coincidePassword() {
+                var valor1 = pass1.val();
+                var valor2 = pass2.val();
+                //muestro el span
+                span.show().removeClass();
+                //condiciones dentro de la función
+                if (valor1 != valor2) {
+                    span.text(negacion).addClass('negacion');
+                }
+                if (valor1.length == 0 || valor1 == "") {
+                    span.text(vacio).addClass('negacion');
+                }
+                if (valor1.length < 6 || valor1.length > 10) {
+                    span.text(longitud).addClass('negacion');
+                }
+                if (valor1.length != 0 && valor1 == valor2) {
+                    span.text(confirmacion).removeClass("negacion").addClass('confirmacion');
+                }
+            }
+            //ejecuto la función al soltar la tecla
+            pass2.keyup(function () {
+                coincidePassword();
+            });
+        });
+
+
+
+</script>
+<style>
+    body {
+        background: #f7f7f7;
+        font-family: Verdana, Arial,Helvetica,sans-serif;
+        font-size: 100%;
+        padding: 100px 0 0 300px
+    }
+
+    form {
+        background: white;
+        border: 1px solid #ccc;
+        padding: 22px 38px;
+        width: 265px
+    }
+
+    label {
+        color: #d25959;
+        display: block;
+        font-size: .8em;
+        font-weight: 600
+    }
+
+    input {
+        border: 1px solid #ccc;
+        box-shadow: inset #ccc 0 0 5px;
+        cursor: pointer;
+        font-style: italic;
+        margin: 8px 0 20px;
+        padding: 7px;
+        width: 250px
+    }
+
+    .enviar {
+        background: #d25959;
+        box-shadow: none;
+        color: white;
+        margin-bottom: 0;
+        width: 100px
+    }
+
+        .enviar:hover {
+            text-decoration: underline
+        }
+
+    span {
+        display: block;
+        font-size: .8em;
+        margin: 0px 0 10px;
+        padding: 5px 0 5px 11px;
+        width: 200px
+    }
+
+    .confirmacion {
+        background: #C6FFD5;
+        border: 1px solid green;
+    }
+
+    .negacion {
+        background: #ffcccc;
+        border: 1px solid red
+    }
+
+    *, ::after, ::before {
+        box-sizing: initial;
+    }
+</style>
+
+
+<h4>PasaitzaAldatu</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="pasahitzaAldatu">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="erabiltzeId" />
+            @*<div class="form-group">
+                <label asp-for="PaswordOld" class="control-label"></label>
+                <input asp-for="PaswordOld" class="form-control" />
+                <span asp-validation-for="PaswordOld" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <label asp-for="Pasword1" class="control-label"></label>
+                <input asp-for="Pasword1" class="form-control" type="password" name="Pasword1" autofocus="autofocus" min="6" max="10" placeholder="Escriba la contraseña" />
+                <span asp-validation-for="Pasword1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pasword2" class="control-label"></label>
+                <input asp-for="Pasword2" class="form-control" type="password" name="Pasword2" min="6" max="10" placeholder="Vuelva a escribir la contraseña" />
+                <span asp-validation-for="Pasword2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+>

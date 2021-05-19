@@ -1,0 +1,71 @@
+﻿@model proiektua2.Models.Producto
+
+@{
+    ViewData["Title"] = "Details";
+}
+@{
+
+    if (AdminDbContext.user.tipo == "admin")
+    {
+        <h1>Details</h1>
+
+        <div>
+            <h4>Producto</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Marca)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Marca.id)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Categoria)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Categoria.id)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.descripcion)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.descripcion)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.precio)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.precio)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.precioTotal)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.precioTotal)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.imagen)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.imagen)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Eskaintza)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Eskaintza)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Deskontua)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Deskontua)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+        }
+    }

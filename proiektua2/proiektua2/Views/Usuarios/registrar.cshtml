@@ -1,0 +1,43 @@
+﻿@model proiektua2.Models.RegisterModel
+
+@{
+    ViewData["Title"] = "registrar";
+}
+
+<h1>registrar</h1>
+
+<h4>Usuario</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="registrar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="us" class="control-label">Erabiltzailea</label>
+                <input asp-for="us" class="form-control" />
+                <span asp-validation-for="us" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+           @* <div class="form-group">
+                <label asp-for="tipo" class="control-label"></label>
+                <input asp-for="tipo" class="form-control" />
+                <span asp-validation-for="tipo" class="text-danger"></span>
+            </div>*@
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="RememberMe" /> @Html.DisplayNameFor(model => model.RememberMe)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Erregistratu" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

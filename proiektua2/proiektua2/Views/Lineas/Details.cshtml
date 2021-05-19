@@ -1,0 +1,48 @@
+﻿@model proiektua2.Models.Linea
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Linea</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idPedido)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idPedido)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idProducto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idProducto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.numlineas)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.numlineas)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.unidades)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.unidades)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.precio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.precio)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.idLinea">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,56 @@
+﻿<h3>FormExample1</h3>
+
+@page "/form-example-1"
+
+@using Microsoft.Extensions.Logging
+@inject ILogger<FormExample1> Logger
+@using proiektua2.Models
+@using Microsoft.AspNetCore.Components.Forms
+
+<EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    @*<InputText id="name" @bind-Value="exampleModel.erabiltzeId" />*@
+    <InputText id="name" @bind-Value="exampleModel.PaswordOld" />
+    <InputText id="name" @bind-Value="exampleModel.Pasword1" />
+    <InputText id="name" @bind-Value="exampleModel.Pasword2" />
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    AdminDbContext _context = new AdminDbContext();
+
+    private pasahitzaAldatu exampleModel = new();
+
+    private void HandleValidSubmit()
+    {
+        Usuario user = AdminDbContext.user;
+
+        if (exampleModel.Pasword1.Equals(exampleModel.Pasword2))
+        {
+            var bezeroaEskaera = _context.Usuarios
+                 .SingleOrDefault(b => b.idusuario == user.idusuario);
+            if (bezeroaEskaera.password.Equals(exampleModel.PaswordOld))
+            {
+                _context.Add(user);
+                _context.SaveChangesAsync();
+            }
+            else
+            {
+                Logger.LogInformation("las atigua contraseña no es correcta");
+            }
+
+        }
+        else
+        {
+            Logger.LogInformation("las dos contraseñas tiene que ser iguales");
+
+        }
+        Logger.LogInformation("HandleValidSubmit called");
+
+        // Process the valid form
+    }
+}
+////

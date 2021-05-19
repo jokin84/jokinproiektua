@@ -1,0 +1,65 @@
+﻿@model proiektua2.Models.Producto
+
+@{
+    ViewData["Title"] = "detatellak2";
+}
+@using proiektua2.Controllers
+
+
+<div>
+    <h4>Producto</h4>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Marca.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Categoriaid)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Categoria.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+        @{
+
+
+        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.precio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.precioTotal) descuento:@Html.DisplayFor(model => model.Deskontua) :precio sin descuento:@Html.DisplayFor(model => model.precio)
+        </dd>
+
+        <dt class="col-sm-2">
+
+        </dt>
+        <dd class="col-sm-10">
+            <img class="img-responsive irudia" src="\images\productos\@Html.DisplayFor(model => model.imagen)" width="150" height="130" />
+
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Deskontua)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Deskontua)%
+        </dd>
+        <i class="fa fa-shopping-cart"></i>
+        <a asp-area="" asp-controller="Saskia" asp-action="SaskiaGehitu" asp-route-id="@Html.DisplayNameFor(model => model.id)">Karritora gehitu</a>
+    </dl>
+</div>
+<div class="well">
+    @await Html.PartialAsync("_Disqus", Model)
+</div>
+<script id="dsq-count-scr" src="//pcgora-com.disqus.com/count.js" async></script>
+

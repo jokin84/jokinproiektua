@@ -1,0 +1,150 @@
+﻿
+@using proiektua2.Controllers
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - proiektua2</title>
+    <script src="~/js/site.css"></script>
+    <script src="~/js/jquery-3.6.0.slim.min.js"></script>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/fontawesome/css/all.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/bootstrap-5.0.1-dist/css/bootstrap.min.css" />
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">proiektua2</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    @*<ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </li>
+        </ul>*@
+
+                    <ul class="navbar-nav flex-grow-1">
+                        @* <li class="nav-item dropdown">
+               <div class="col-md-4 nireMenua">
+
+        <div class="dropdown">
+            <button class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                MARCAS
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                HOLA
+                @{var izena = "";
+                    foreach (var item in Model)
+                    {
+                        if (item.Marca.Nombre != izena)
+                        {
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    @Html.DisplayFor(modelItem => item.Marca.Nombre)
+                                    @{izena = item.Marca.Nombre;}
+                                </a>
+                            </li>
+                        }
+                    }
+                }
+            </ul>
+        </div>&& AdminDbContext.sesion == true)
+                </li>*@
+                        @if (AdminDbContext.sesion == true)
+                        {
+                            ///////<i class="fa fa-shopping-cart"></i><a asp-area="" asp-controller="Saskia" asp-action="SaskiaGehitu" asp-route-id="@item.id">Karritora gehitu</a>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark"> @AdminDbContext.user.usuario  </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Logout">Saioa amaitu</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="ErabiltzaileaErosketa">Erosketak</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Saskia" asp-action="Index">Karritora</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Ezarpenak">Ezarpenak</a>
+                            </li>
+                            @*<li class="nav-item">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ezarpenak
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+
+                        <button class="dropdown-item"><a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="ErabiltzaileaErosketa" asp-route-id="">Erosketak</a></button>
+                        <button class="dropdown-item"><a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="pasahitzaAldatu" asp-route-id="">Pazaitza aldatu</a></button>
+
+
+                    </div>
+                </div>
+            </li>*@
+                            @if (AdminDbContext.user.tipo == "admin")
+                            {
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index">Erabiltzaileak</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Productos" asp-action="Index">Produktuak</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Categorias" asp-action="Index">Kategoriak</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Marcas" asp-action="Index">Markak</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Pedidos" asp-action="Index">Eskaerak</a>
+                                </li>
+                            }
+
+
+                        }
+                        else
+                        {
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="registrar">Registrar</a>
+                            </li>
+
+
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - proiektua2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<proiektua2.Models.Erosketa>
+
+@{
+    ViewData["Title"] = "ErabiltzaileaErosketa";
+}
+
+<h1>ErabiltzaileaErosketa</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Kantitatea)
+            </th>
+       
+            <th>
+                @Html.DisplayNameFor(model => model.Producto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producto.imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+  
+            <th>
+                @Html.DisplayNameFor(model => model.dirua)
+            </th>
+          
+        </tr>
+    </thead>
+    <tbody>
+        @{
+
+            foreach (var item in Model)
+            {
+                if (item.BezeroaEskaera.Erabiltzaileaid==AdminDbContext.user.idusuario) { 
+                <tr>
+                    <td>
+                       kantitatea: @Html.DisplayFor(modelItem => item.Kantitatea)
+                    </td>
+     
+                    <td>
+
+                        produktua:  @Html.DisplayFor(modelItem => item.Producto.Nombre)
+                    </td>
+                    <td>
+                        <img src="\images\productos\@Html.DisplayFor(modelItem => item.Producto.imagen)" width="150" height="130" />
+                    </td>
+
+                    <td>
+                       Data: @Html.DisplayFor(modelItem => item.Data)
+                    </td>
+          
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dirua) euro.
+                    </td>
+
+                </tr>
+                }
+            }
+        }
+    </tbody>
+</table>

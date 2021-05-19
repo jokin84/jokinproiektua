@@ -1,0 +1,138 @@
+﻿@using System.Globalization;
+@model proiektua2.ViewModels.SaskiaViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <div id="update-massage"></div>
+    <table class="table table-striped">
+        <thead>
+            <tr class="borgona">
+                <th>Izena</th>
+                <th>Describapena</th>
+                <th>Irudia</th>
+
+                <th>Kantitatea</th>
+
+                <th>salneurria</th>
+                <th>Descontua</th>
+                <th>salneurria deskontuarekin</th>
+                <th>Data</th>
+
+            </tr>
+        </thead>
+
+        @foreach (var item in Model.SaskiaAleak)
+        {
+            <tr id="row-@item.Producto.id">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producto.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producto.descripcion)
+                </td>
+                <td>
+                    <img id="thumbnail" src="~/images/productos/@Html.DisplayFor(modelItem => item.Producto.imagen)" />
+                </td>
+                <td>
+               
+                    
+                    
+                    
+                     <a asp-controller="Saskia" asp-action="SaskiaKendu" asp-route-id="@item.Producto.id" class="RemoveLink" data-id="@item.ProductoId">
+                        <i class="fas fa-minus-circle borgona"></i>
+                    </a>
+                    <span id="item-count-@item.Producto.id">
+                        @Html.DisplayFor(modelItem => item.Kantitatea)
+                    </span>
+
+                    <a  class="AddLink" data-id="@item.ProductoId">
+                        <i class="fas fa-plus-circle borgona"></i>
+                    </a>
+                    @*<div class="col-md-2 padina col-height col-middle">
+            <p class="row">
+                <a href="" class="RemoveLink" data-id="@item.Id">
+                    <span class="glyphicon glyphicon-minus"></span>
+                </a>
+                <span id="item-count-@item.Id">@item.Kantitatea</span>
+                <a href="" class="AddLink" data-id="@item.Id">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </p>
+        </div>*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producto.precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producto.Deskontua)
+                </td>
+                <td>
+
+                    @{ float eskaintza = item.Producto.precio - (item.Producto.precio * item.Producto.Deskontua) / 100;}
+                    @eskaintza
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+            </tr>
+       
+        }
+
+        <tr>
+            <td><a class="btn btn-borgona text-light" asp-controller="Home" asp-action="Index">Bueltatu</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="float-right"><p>Guztira: <span id="cart-total">@Model.SaskiaGuztira.ToString("C2", CultureInfo.CurrentCulture)</span></p></td>
+        </tr>
+    </table>
+    <div class="pull-left">
+        <p class="button">
+            <a class="btn btn-borgona" asp-area="" asp-controller="Home" asp-action="Index">Jarraitu erosten</a>
+        </p>
+    </div>
+
+    <div class="pull-right">
+        <p class="button">
+            <a class="btn btn-borgona" asp-area="" asp-controller="Ordaindu" asp-action="Index">Ordaindu>></a>
+        </p>
+    </div>
+
+</div>
+
+@*
+    ///////////////////////////
+    <div class="container">
+        <table class="table">
+            <tbody>
+                @foreach (var item in Model.SaskiaAleak)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Producto.Nombre)
+                        </td>
+                        <td>
+                            <img src="~/images/productos/@Html.DisplayFor(modelItem => item.Producto.imagen)" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Kantitatea)
+                        </td>
+                        <td>
+                            <!--<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>-->
+
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tr><td><p class="float-right">Guztira: @Model.SaskiaGuztira</p></td></tr>
+        </table>
+    </div>
+*@
+

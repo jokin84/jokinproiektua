@@ -1,0 +1,83 @@
+﻿@model IEnumerable<proiektua2.Models.Producto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+
+    if (AdminDbContext.user.tipo == "admin")
+    {
+    <h1>Index</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Marca)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Categoria)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.precio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.precioTotal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.imagen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Eskaintza)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Deskontua)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Marca.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Categoria.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.precio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.precioTotal)
+                    </td>
+                    <td>
+                        <img src="\images\productos\@Html.DisplayFor(modelItem => item.imagen)" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Eskaintza)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Deskontua)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+        }
+    }
